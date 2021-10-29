@@ -1,0 +1,7 @@
+@inproceedings{evens2022game,
+  title={A Game-Theoretic Approach for Interacting Dynamical Systems in Autonomous Driving},
+  author={Evens, Brecht and Schuurmans, Mathijs and Patrinos, Panagiotis},
+  booktitle={ECC 2022},
+  note={Submitted},
+  year={2022}
+}
