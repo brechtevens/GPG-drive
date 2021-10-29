@@ -1,0 +1,17 @@
+# Wheel for panocpy on Linux
+./local_wheels/panocpy-0.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_27_x86_64.whl
+
+# Wheel for panocpy on Windows
+#./local_wheels/panocpy-0.0.2-cp39-cp39-win_amd64.whl
+
+wheel==0.37.0
+casadi==3.5.5
+matplotlib==3.4.2
+numpy==1.21.0
+opengen==0.6.5
+pyglet==1.5.18
+git+https://github.com/jorgecarleitao/pyglet-gui.git
+PyOpenGL==3.1.5
+scikit_learn==1.0.1
+scipy==1.7.1
+triangulation==0.12
