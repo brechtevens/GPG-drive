@@ -1,2 +1,5 @@
 build/*
 experiments/*
+
+src/__pycache__/*
+src/helpers/__pycache__/*
