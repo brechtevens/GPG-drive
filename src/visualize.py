@@ -691,8 +691,7 @@ class Visualizer(object):
                 self.logger.save_on_draw = False
             else:
                 # Generate and save video
-                os.system("ffmpeg -r " + str(1/self.Ts) + " -i " + video_path +
-                          "/screenshot-%01d.png -c:v libx264 -vf fps=25 -s " + str(self.width) + "x" + str(self.height) + " -pix_fmt yuv420p " + video_path + "/video.mp4") # For Windows, use e.g. "C:/ffmpeg/bin/ffmpeg.exe" instead of "ffmpeg"
+                os.system("ffmpeg -r " + str(1/self.Ts) + " -i " + video_path + "/screenshot-%01d.png -c:v libx264 -vf fps=25 -s " + str(self.width) + "x" + str(self.height) + " -pix_fmt yuv420p -crf 5 " + video_path + "/video.mp4") # For Windows, use e.g. "C:/ffmpeg/bin/ffmpeg.exe" instead of "ffmpeg"
                 time.sleep(0.1)
                 self.logger.generate_video = False
         
