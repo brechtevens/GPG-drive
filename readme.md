@@ -5,7 +5,7 @@
 The code is written using Python 3.9, and mainly uses the following Python libraries:
 * CasADI
 * Pyglet
-* panocpy and OpEn (you need a .whl file to install this)
+* panocpy or OpEn
 
 The required packages can be installed using
 
