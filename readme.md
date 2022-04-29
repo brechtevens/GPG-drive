@@ -43,17 +43,13 @@ You can move your visualization window by dragging the mouse and zoom by scrolli
 
 ### Project structure
 
-* **environments/:** folder for adding custom environments, such as a racetrack
-
 * **examples/:** main scripts for creating and running a traffic environment simulation
-
-* **images/:** images used for visualization of the traffic environments
 
 * **local_wheels/:** local wheels required for the driving simulator
 
 * **screenshots/:** folder for all screenshots taken in the simulator
 
-* **src/**: source code of the simulator, consisting of
+* **src/GPGdrive**: source code of the simulator, consisting of
 
   * **car.py** : Classes for representing different vehicle types, i.e. UserControlledCar and GNEPOptimizerCar
   * **collision.py** : Contains various collision avoidance constraints
@@ -72,7 +68,8 @@ You can move your visualization window by dragging the mouse and zoom by scrolli
   * **visualize.py** : Class for the main loop and the visualization of experiments
   * **visualize_data.py** : function for visualizing information of an experiment
   * **world.py** : Contains a class for representing traffic situations
-
-* **theme/:** buttons and checkboxes for the pyglet-gui package
-
-* **triangulation/:** the earcut-python package
+  * **theme/:** buttons and checkboxes for the pyglet-gui package
+  * **triangulation/:** the earcut-python package
+  * **environments/:** folder for adding custom environments, such as a racetrack
+  * **images/:** images used for visualization of the traffic environments
+  * **helpers/:** helper scripts for visualizations
