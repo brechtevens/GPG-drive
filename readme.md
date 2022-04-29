@@ -5,15 +5,41 @@
 The code is written using Python 3.9, and mainly uses the following Python libraries:
 * CasADI
 * Pyglet
-* panocpy and OpEn (you need a .whl file to install this)
+* OpEn
+* panocpy (optional, development build) 
 
-The required packages can be installed using
+You can install the GPGdrive package using
 
 ```
-pip install -r requirements.txt
+pip install .
 ```
 
-**Note:** make sure to select the correct panocpy wheel in requirements.txt if you are using Windows instead of Linux.
+Furthermore, panocpy can be installed though a provided .whl, using (for Linux)
+```
+pip install ./local_wheels/panocpy-0.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_27_x86_64.whl
+```
+and (for Windows)
+```
+pip install ./local_wheels/panocpy-0.0.2-cp39-cp39-win_amd64.whl 
+```
+
+### Running examples
+To run an example script, perform
+```
+python examples/examples_script.py
+```
+
+The simulator window will pop up. Here, the following hotkeys can be used:
+* SPACE: pause and unpause the game
+* P: take a screenshot
+* B: toggle visualization bounding boxes of vehicles
+* T: change trajectory visualization mode
+* K: kill all process
+* ESCAPE: kill all processes and visualize the obtained data
+
+The game always starts in the paused mode by default.
+
+You can move your visualization window by dragging the mouse and zoom by scrolling. Finally, you can click specific vehicles to open a pop-up window, allowing to visualize additional vehicle-specific information such as their costs, constraints and state variables.
 
 ### Project structure
 
@@ -50,5 +76,3 @@ pip install -r requirements.txt
 * **theme/:** buttons and checkboxes for the pyglet-gui package
 
 * **triangulation/:** the earcut-python package
-
-  
