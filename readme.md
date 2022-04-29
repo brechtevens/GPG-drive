@@ -1,5 +1,5 @@
-<!-- Driving simulator Brecht Evens -->
-## Driving simulator Brecht Evens
+<!-- Driving simulator -->
+## Driving simulator
 
 ### Prerequisites
 The code is written using Python 3.9, and mainly uses the following Python libraries:
