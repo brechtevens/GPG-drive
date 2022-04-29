@@ -32,9 +32,9 @@ python examples/{name_example_script}.py
 The simulator window will pop up. Here, the following hotkeys can be used:
 * SPACE: pause and unpause the game
 * P: take a screenshot
-* B: toggle visualization bounding boxes of vehicles
+* B: toggle visualization of the bounding boxes of vehicles
 * T: change trajectory visualization mode
-* K: kill all process
+* K: kill all processes
 * ESCAPE: kill all processes and visualize the obtained data
 
 The game always starts in the paused mode by default.
