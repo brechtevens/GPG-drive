@@ -26,7 +26,7 @@ pip install ./local_wheels/panocpy-0.0.2-cp39-cp39-win_amd64.whl
 ### Running examples
 To run an example script, perform
 ```
-python examples/examples_script.py
+python examples/{name_example_script}.py
 ```
 
 The simulator window will pop up. Here, the following hotkeys can be used:
