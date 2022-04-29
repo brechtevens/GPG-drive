@@ -1,12 +1,10 @@
-import os, sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import math
 import casadi as cs
-import src.constraints as constraints
-import src.boundingbox as boundingbox
+from . import constraints as constraints
+from . import boundingbox as boundingbox
 
-import src.car as car
-import src.dynamics as dynamics
+from . import car as car
+from . import dynamics as dynamics
 import numpy as np
 import matplotlib.pyplot as plt
 from pylab import meshgrid, cm, imshow, contour, clabel, colorbar, axis, title, show

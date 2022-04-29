@@ -1,9 +1,9 @@
 from casadi.casadi import solve
 import numpy as np
 import casadi as cs
-from src.penalty import PenaltyUpdater
-import src.solvers
-from src.settings import GPGSolverSettings
+from .penalty import PenaltyUpdater
+from . import solvers
+from .settings import GPGSolverSettings
 
 from itertools import chain
 
@@ -135,13 +135,17 @@ class solver(object):
 
         if solver_settings.solver == 'ipopt':
             # Initialize solver for 'ipopt'
-            self.solver = src.solvers.get_ipopt_solver(self.problem, self.solver_settings, self.bounds)
+            self.solver = solvers.get_ipopt_solver(self.problem, self.solver_settings, self.bounds)
 
         elif solver_settings.solver == 'OpEn':
-            self.solver = src.solvers.get_OpEn_solver(self.problem, self.solver_settings, self.bounds, self.id)
-            
+            OpEn_problem = self.problem.copy()
+            OpEn_problem['x'] = self.problem['x'].cat
+            OpEn_problem['g'] = self.problem['g'].cat
+            OpEn_problem['g1'] = self.problem['g1'].cat
+            OpEn_problem['g2'] = self.problem['g2'].cat
+            self.solver = solvers.get_OpEn_solver(OpEn_problem, self.solver_settings, self.bounds, self.id)
         else:
-            self.solver = src.solvers.get_panocpy_solver(self.problem, self.solver_settings, self.bounds, self.id)
+            self.solver = solvers.get_panocpy_solver(self.problem, self.solver_settings, self.bounds, self.id)
         return
 
     def reset_x_v(self):

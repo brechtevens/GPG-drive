@@ -1,5 +1,6 @@
 build/*
 experiments/*
+screenshots/*
 
 src/__pycache__/*
 src/helpers/__pycache__/*

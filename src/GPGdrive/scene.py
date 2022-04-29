@@ -1,13 +1,13 @@
 import casadi as cs
-import src.feature as feature
-import src.lane as lane
-import src.constraints as constraints
+from . import feature as feature
+from . import lane as lane
+from . import constraints as constraints
 import pyglet.gl as gl
 import pyglet.graphics as graphics
 import numpy as np
 from pyglet import shapes, sprite
-from src.helpers.tree_generator import generate_trees, generate_trees_Gabor
-from src.helpers.visualize_helpers import centered_image
+from .helpers.tree_generator import generate_trees, generate_trees_Gabor
+from .helpers.visualize_helpers import centered_image
 
 
 class Scene:
@@ -64,7 +64,7 @@ class Highway(Scene):
         self.tree_sprites = []
         for tree_location in self.tree_locations:
             index = np.random.randint(1,5)
-            self.tree_sprites.append(sprite.Sprite(centered_image('images/Trees/Treedark{}.png'.format(index)), subpixel=True, batch=self.tree_batch))
+            self.tree_sprites.append(sprite.Sprite(centered_image('GPGdrive/images/Trees/Treedark{}.png'.format(index)), subpixel=True, batch=self.tree_batch))
             tree_size = np.random.uniform(3,6)
             self.tree_sprites[-1].scale = tree_size/256
             self.tree_sprites[-1].x, self.tree_sprites[-1].y = tree_location

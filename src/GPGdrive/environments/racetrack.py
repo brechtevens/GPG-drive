@@ -1,14 +1,13 @@
-import os, sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from src.dataloader import loadMatrix
+from GPGdrive.dataloader import loadMatrix
 import scipy.io
 import numpy as np
+import os
 
 from OpenGL.arrays import vbo
 import pyglet.gl as gl
 import pyglet.graphics as graphics
-import triangulation.earcut.earcut as earcut
-import src.feature as feature
+import GPGdrive.triangulation.earcut.earcut as earcut
+import GPGdrive.feature as feature
 import casadi as cs
 
 
@@ -33,7 +32,8 @@ def load_reference_track(track_name):
     #     meta = scipy.io.loadmat('environments/racetrack/optimal_reference_Nseg.mat')
     #     simulation_steps = meta['Nseg'][0][0]-1
 
-    centerline = scipy.io.loadmat('environments/racetrack/centerline.mat')
+    working_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    centerline = scipy.io.loadmat(working_dir + '/environments/racetrack/centerline.mat')
     N = centerline['Nseg'][0,0]
     # centerX = dataLoad[0][:][:simulation_steps]
     # centerY = dataLoad[1][:][:simulation_steps]

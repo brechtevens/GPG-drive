@@ -1,12 +1,12 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from src.world import World
-from src.experiment import Experiment
-from src.visualize import Visualizer
-import src.dynamics as dynamics
-import src.settings as settings
-import src.collision as collision
-import src.feature as feature
+from GPGdrive.world import World
+from GPGdrive.experiment import Experiment
+from GPGdrive.visualize import Visualizer
+import GPGdrive.dynamics as dynamics
+import GPGdrive.settings as settings
+import GPGdrive.collision as collision
+import GPGdrive.feature as feature
 import casadi as cs
 
 

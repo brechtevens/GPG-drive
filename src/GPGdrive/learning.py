@@ -2,8 +2,8 @@ import numpy as np
 import casadi as cs
 import opengen as og
 import os, sys
-import src.solvers
-from src.settings import OnlineLearningSettings
+from . import solvers
+from .settings import OnlineLearningSettings
 
 from itertools import chain
 
@@ -348,7 +348,7 @@ class online_learning_solver(object):
 
                 # set-up solver for online learning methodology
                 if self.settings.solver == 'ipopt':
-                    self.observation_solver_dict[id] = src.solvers.get_ipopt_solver(self.observation_problem_dict[id], self.settings, self.bounds_dict[id])
+                    self.observation_solver_dict[id] = solvers.get_ipopt_solver(self.observation_problem_dict[id], self.settings, self.bounds_dict[id])
 
                 else:
                     self.primal_factor = self.settings.panoc_delta_tolerance / self.settings.panoc_delta_tolerance_primal_feas
@@ -369,9 +369,9 @@ class online_learning_solver(object):
                                 factor[1]*self.observation_variables[id]['mu_times_h_bounds'])
                     
                     if self.settings.solver == 'OpEn':
-                        self.observation_solver_dict[id] = src.solvers.get_OpEn_solver(self.observation_problem_dict[id], self.settings, self.bounds_dict[id], self.id, id, "learn")
+                        self.observation_solver_dict[id] = solvers.get_OpEn_solver(self.observation_problem_dict[id], self.settings, self.bounds_dict[id], self.id, id, "learn")
                     else:
-                        self.observation_solver_dict[id] = src.solvers.get_panocpy_solver(self.observation_problem_dict[id], self.settings, self.bounds_dict[id], self.id, id, "learn")
+                        self.observation_solver_dict[id] = solvers.get_panocpy_solver(self.observation_problem_dict[id], self.settings, self.bounds_dict[id], self.id, id, "learn")
 
     def observe(self, players, observations):
         """ Initializes the bounds for the players in the GPG
@@ -766,7 +766,7 @@ class online_learning_solver_full(object):
 
         # set-up solver for online learning methodology
         if self.settings.solver == 'ipopt':
-            self.observation_solver = src.solvers.get_ipopt_solver(self.observation_problem, self.settings, self.bounds)
+            self.observation_solver = solvers.get_ipopt_solver(self.observation_problem, self.settings, self.bounds)
 
         else:
             self.primal_factor = self.settings.panoc_delta_tolerance / self.settings.panoc_delta_tolerance_primal_feas
@@ -787,9 +787,9 @@ class online_learning_solver_full(object):
                         factor[1]*self.observation_variables['mu_times_h_bounds'])
 
             if self.settings.solver == 'OpEn':
-                self.observation_solver = src.solvers.get_OpEn_solver(self.observation_problem, self.settings, self.bounds, self.id, None, "learn")
+                self.observation_solver = solvers.get_OpEn_solver(self.observation_problem, self.settings, self.bounds, self.id, None, "learn")
             else:
-                self.observation_solver = src.solvers.get_panocpy_solver(self.observation_problem, self.settings, self.bounds, self.id, None, "learn")
+                self.observation_solver = solvers.get_panocpy_solver(self.observation_problem, self.settings, self.bounds, self.id, None, "learn")
 
     def observe(self, players, observations):
         """ Initializes the bounds for the players in the GPG

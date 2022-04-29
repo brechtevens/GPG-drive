@@ -1,11 +1,11 @@
 import numpy as np
 import casadi as cs
 import opengen as og
-from src.penalty import PenaltyUpdater
+from .penalty import PenaltyUpdater
 import sys
 import os.path
-import src.solvers
-from src.settings import GPGSolverSettings
+from . import solvers
+from .settings import GPGSolverSettings
 
 from itertools import chain
 
@@ -139,15 +139,15 @@ class solver(object):
         # Initialize solvers
         if self.solver_settings.solver == 'ipopt':
             for i, player in players.items():
-                self.solver_dict[i] = src.solvers.get_ipopt_solver(self.problem_dict[i], self.solver_settings, self.bounds_dict[i])
+                self.solver_dict[i] = solvers.get_ipopt_solver(self.problem_dict[i], self.solver_settings, self.bounds_dict[i])
                                                   
         elif self.solver_settings.solver == 'OpEn':
             for i, player in players.items():
-                self.solver_dict[i] = src.solvers.get_OpEn_solver(self.problem_dict[i], self.solver_settings, self.bounds_dict[i], self.id, i)
+                self.solver_dict[i] = solvers.get_OpEn_solver(self.problem_dict[i], self.solver_settings, self.bounds_dict[i], self.id, i)
             
         else:
             for i, player in players.items():
-                self.solver_dict[i] = src.solvers.get_panocpy_solver(self.problem_dict[i], self.solver_settings, self.bounds_dict[i], self.id, i)
+                self.solver_dict[i] = solvers.get_panocpy_solver(self.problem_dict[i], self.solver_settings, self.bounds_dict[i], self.id, i)
 
     def player_specific_constraint_violation_norm(self, p_current):
         # if self.solver_settings.penalty_norm == 'norm_inf':

@@ -1,5 +1,5 @@
 from sys import gettrace
-from src.trajectory import Trajectory
+from .trajectory import Trajectory
 import casadi as cs
 
 class PhysicalObject(object):

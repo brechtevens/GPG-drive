@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-import src.settings as settings
-import src.world as world
+from . import settings as settings
+from . import world as world
 
 
 class Experiment(object):

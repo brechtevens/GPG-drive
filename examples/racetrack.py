@@ -1,14 +1,14 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from src.dataloader import loadMatrix
+from GPGdrive.dataloader import loadMatrix
 import scipy.io
 
-from src.world import World
-from src.experiment import Experiment
-import src.dynamics as dynamics
-import src.settings as settings
-import src.collision as collision
-from src.visualize import Visualizer
+from GPGdrive.world import World
+from GPGdrive.experiment import Experiment
+import GPGdrive.dynamics as dynamics
+import GPGdrive.settings as settings
+import GPGdrive.collision as collision
+from GPGdrive.visualize import Visualizer
 import casadi as cs
 import types
 

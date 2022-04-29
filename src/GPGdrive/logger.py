@@ -1,8 +1,8 @@
 import casadi as cs
 import os
 import numpy as np
-import src.collision as collision
-import src.car as car
+from . import collision as collision
+from . import car as car
 import pickle
 
 
@@ -29,7 +29,7 @@ class Logger:
 
     @property
     def location(self):
-        experiments_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'experiments', self.settings.name_experiment)
+        experiments_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), 'experiments', self.settings.name_experiment)
         return experiments_dir
 
     def pickle_experiment_setup(self, experiment):

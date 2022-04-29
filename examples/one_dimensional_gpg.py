@@ -1,11 +1,11 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from src.world import World
-from src.experiment import Experiment
-from src.visualize import Visualizer
-import src.dynamics as dynamics
-import src.settings as settings
-import src.collision as collision
+from GPGdrive.world import World
+from GPGdrive.experiment import Experiment
+from GPGdrive.visualize import Visualizer
+import GPGdrive.dynamics as dynamics
+import GPGdrive.settings as settings
+import GPGdrive.collision as collision
 import casadi as cs
 import math
 
@@ -79,7 +79,7 @@ def experiment_one_dimensional_gpg(is_learning, is_belief_correct):
 
     ## Learning settings
     if is_learning:
-        experiment.learning_settings.solver = 'ipopt'
+        experiment.learning_settings.solver = 'panocpy'
         experiment.learning_settings.nb_observations = 1
         experiment.learning_settings.regularization = [1e2, 1e0, 1e5, 1e5]
         experiment.learning_settings.panoc_rebuild_solver = True

@@ -1,4 +1,4 @@
-from src.settings import GPGSolverSettings
+from .settings import GPGSolverSettings
 import casadi as cs
 
 

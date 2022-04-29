@@ -1,5 +1,5 @@
 import casadi as cs
-import src.collision as collision
+from . import collision as collision
 
 class Feature(object):
     """

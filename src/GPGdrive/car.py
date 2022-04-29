@@ -1,15 +1,15 @@
 import numpy as np
-import src.gaussseidelsolver as gaussseidelsolver
-import src.learning as learning
-import src.lagrangiansolver as lagrangiansolver
-from src.penalty import PenaltyParameters
-from src.trajectory import Trajectory
+from . import gaussseidelsolver as gaussseidelsolver
+from . import learning as learning
+from . import lagrangiansolver as lagrangiansolver
+from .penalty import PenaltyParameters
+from .trajectory import Trajectory
 import casadi as cs
 from collections import deque
 import time
-import src.settings as settings
-from src.player import Obstacle, Player
-import src.feature as feature
+from . import settings as settings
+from .player import Obstacle, Player
+from . import feature as feature
 
 class Car(object):
     """

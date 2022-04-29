@@ -1,5 +1,5 @@
 import numpy as np
-import src.feature as feature 
+from . import feature as feature 
 import casadi as cs
 
 

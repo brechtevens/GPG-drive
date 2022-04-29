@@ -1,11 +1,11 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from src.world import World
-from src.experiment import Experiment
-from src.visualize import Visualizer
-import src.dynamics as dynamics
-import src.settings as settings
-import src.collision as collision
+from GPGdrive.world import World
+from GPGdrive.experiment import Experiment
+from GPGdrive.visualize import Visualizer
+import GPGdrive.dynamics as dynamics
+import GPGdrive.settings as settings
+import GPGdrive.collision as collision
 import casadi as cs
 
 
@@ -54,8 +54,10 @@ def world_overtaking_scenario(solver_settings):
 def experiment_overtaking_scenario():
     experiment = Experiment("overtaking_scenario")
     experiment.solver_settings.solver = 'panocpy'
+    experiment.solver_settings.constraint_mode = 'hard'
+    experiment.solver_settings.warm_start = True
     experiment.solver_settings.panoc_rebuild_solver = True
-    experiment.solver_settings.panoc_use_alm = True
+    experiment.solver_settings.panoc_use_alm = False
 
     experiment.world = world_overtaking_scenario(experiment.solver_settings)
 

@@ -1,9 +1,9 @@
-import src.feature as feature
+from . import feature as feature
 import numpy as np
-import src.scene as scene
+from . import scene as scene
 import casadi as cs
-import src.collision as collision
-import src.car as car
+from . import collision as collision
+from . import car as car
 
 class Object(object):
     def __init__(self, name, x):
@@ -40,7 +40,7 @@ class World(object):
         self.Ts = 0
 
     def set_racetrack(self):
-        import environments.racetrack as racetrack
+        import GPGdrive.environments.racetrack as racetrack
         self.scene = racetrack.RaceTrack()
 
     def set_nb_lanes(self, nb_lanes, width=3.0, length_list=None):

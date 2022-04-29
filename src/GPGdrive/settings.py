@@ -1,4 +1,4 @@
-import src.car as car
+from . import car as car
 
 class PygletVisualizationSettings(object):
     """
@@ -198,7 +198,7 @@ class OnlineLearningSettings(SolverSettings):
     panoc_penalty_weight_update_factor = 2
     panoc_max_outer_iterations = 20
     panoc_max_inner_iterations = int(1e5)
-    panoc_use_alm = False
+    panoc_use_alm = True
 
     panoc_delta_tolerance_primal_feas = 1e-2
     panoc_delta_tolerance_complementarity = 1e-3

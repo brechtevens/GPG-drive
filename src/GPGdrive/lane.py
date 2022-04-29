@@ -1,6 +1,6 @@
 import numpy as np
 import casadi.casadi as cs
-import src.feature as feature
+from . import feature as feature
 import pyglet.gl as gl
 import pyglet.graphics as graphics
 

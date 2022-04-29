@@ -9,12 +9,12 @@ import time
 import math
 import casadi as cs
 
-import src.logger as logger
-import src.collision as collision
-import src.boundingbox as boundingbox
-import src.car as car
-import src.visualize_data as visualize_data
-from src.helpers.visualize_helpers import centered_image
+from . import logger as logger
+from . import collision as collision
+from . import boundingbox as boundingbox
+from . import car as car
+from . import visualize_data as visualize_data
+from .helpers.visualize_helpers import centered_image
 
 import matplotlib.cm
 import os
@@ -92,7 +92,7 @@ class Visualizer(object):
 
         # Set-up pyglet variables
         self.iters = 1000  # todo hard-coded
-        self.grass = pyglet.resource.texture('images/grass.png')
+        self.grass = pyglet.resource.texture('GPGdrive/images/grass.png')
         self.paused = False
 
         # Initialize variables for the lanes and for the cars along with their positions
@@ -110,7 +110,7 @@ class Visualizer(object):
         self.heatmap = None
         self.heatmap_valid = False
         self.cm = matplotlib.cm.jet
-        self.heatmap_size = (256,256)
+        self.heatmap_size = (128,128)
 
         # Settings for visualization windows when pressing 'ESC' button
         self.data_visualization_windows = experiment.data_visualization_windows
@@ -131,7 +131,7 @@ class Visualizer(object):
         self.live_data_shown = ['x', 'y', 'angle', 'velocity', 'acceleration', 'steering angle', 'stage cost', 'cost',
                                 'effective constraint violation', 'planned constraint violation']
         [x_min, x_max, y_min, y_max] = self.initialize_live_data_window()
-        self.text_box_background = pyglet.sprite.Sprite(pyglet.resource.image('images/gray_box.png'), 0, 0)
+        self.text_box_background = pyglet.sprite.Sprite(pyglet.resource.image('GPGdrive/images/gray_box.png'), 0, 0)
         self.text_box_background.scale_x = (x_max - x_min) / 150
         self.text_box_background.scale_y = (y_max - y_min) / 200
         self.text_box_background.position = (x_min, y_min)
@@ -152,7 +152,7 @@ class Visualizer(object):
             color : str
                 the color of the car for the sprite
             """
-            return pyglet.sprite.Sprite(centered_image('images/car-{}.png'.format(color)), subpixel=True)
+            return pyglet.sprite.Sprite(centered_image('GPGdrive/images/car-{}.png'.format(color)), subpixel=True)
 
         # Initialize sprites
         self.sprites = {c: car_sprite(c) for c in ['red', 'yellow', 'purple', 'white', 'orange', 'gray', 'blue']}
@@ -375,7 +375,7 @@ class Visualizer(object):
             if show_constraints:
                 self.set_heat_constraint(vehicle.get_current_constraint_violation, vehicle.id)
             else:
-                self.set_heat(vehicle.get_current_reward, vehicle.id)
+                self.set_heat(vehicle.get_current_reward, vehicle.id)  
             self.heatmap_id = vehicle.id
             self.togglables['heatmap_show_constraints'] = show_constraints
             o = self.center()
@@ -398,8 +398,8 @@ class Visualizer(object):
         gl.glDisable(self.heatmap.target)
 
     def compute_heatmap_values(self, vehicle, x0, x1):
-        x_range = np.linspace(x0[0], x1[0], self.heatmap_size[0])
-        y_range = np.linspace(x0[1], x1[1], self.heatmap_size[1])
+        # x_range = np.linspace(x0[0], x1[0], self.heatmap_size[0])
+        # y_range = np.linspace(x0[1], x1[1], self.heatmap_size[1])
 
         # x_grid, y_grid = np.meshgrid(x_range, y_range)
         # positions = np.vstack((x_grid.ravel(), y_grid.ravel()))
@@ -685,7 +685,7 @@ class Visualizer(object):
 
         # Save image if save_on_draw
         if self.logger.save_on_draw:
-            video_path = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'experiments', self.logger.settings.name_experiment, "video")
+            video_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), 'experiments', self.logger.settings.name_experiment, "video")
             if not self.logger.generate_video:
                 self.save_screenshot(folder_name=video_path, index=self.current_iteration)
                 self.logger.save_on_draw = False
@@ -759,7 +759,7 @@ class Visualizer(object):
                             }
                         }
                     }
-                    }, resources_path=pyglet.resource.path[0] + '/theme/')
+                    }, resources_path=pyglet.resource.path[0] + '/GPGdrive/theme/')
 
         # Set up a Manager
         # manager = Manager(VerticalContainer([Button(label="Persistent button"),

@@ -1,12 +1,12 @@
-from src.settings import SolverSettings
+from .settings import SolverSettings
 import casadi as cs
 import opengen as og
 import sys
 import os.path
 import numpy as np
-import panocpy as pa
 from datetime import timedelta
 import time
+import casadi.tools as ct
 
 
 def get_ipopt_solver(problem, solver_settings:SolverSettings, bounds):
@@ -39,13 +39,13 @@ def get_open_optimizer_name(solver_settings:SolverSettings, name, id=None, id2=N
 
 
 def get_panoc_optimizers_dir(solver_settings):
-    return os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'build', solver_settings.open_directory_name)
+    return os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))), 'build', solver_settings.open_directory_name)
 
 
 def build_OpEn_problem(OpEn_problem, solver_settings:SolverSettings, optimizers_dir, id, id2, name):
     optimizer_name = get_open_optimizer_name(solver_settings, name, id, id2)
     solver_config = og.config.SolverConfiguration() \
-                    .with_tolerance(solver_settings.panoc_initial_tolerance) \
+                    .with_initial_tolerance(solver_settings.panoc_initial_tolerance) \
                     .with_tolerance(solver_settings.panoc_tolerance) \
                     .with_delta_tolerance(solver_settings.panoc_delta_tolerance) \
                     .with_max_inner_iterations(solver_settings.panoc_max_inner_iterations) \
@@ -125,6 +125,7 @@ def get_OpEn_solver(problem, solver_settings:SolverSettings, bounds, id, id2=Non
 def get_panocpy_solver(problem, solver_settings:SolverSettings, bounds, id, id2=None, name="panocpy"):
     # %% Build the problem for PANOC+ALM
     from tempfile import TemporaryDirectory
+    import panocpy as pa
 
     name += '_' + str(id) 
     if id2 is not None:
@@ -161,7 +162,15 @@ def get_panocpy_solver(problem, solver_settings:SolverSettings, bounds, id, id2=
         max_total_num_retries=0
     )
 
-    if solver_settings.panoc_use_alm:
+    no_quadratic_constraints = False
+    if isinstance(problem['g2'], ct.struct_SX):
+        if problem['g2'].cat.numel() == 0:
+            no_quadratic_constraints = True
+    else:
+        if problem['g2'].numel() == 0:
+            no_quadratic_constraints = True
+
+    if solver_settings.panoc_use_alm or no_quadratic_constraints:
         panocpy_prob = pa.generate_and_compile_casadi_problem(f_prob, g_prob, name=name)
 
         panocpy_prob.C.lowerbound = bounds["lbx"]
